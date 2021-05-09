@@ -36,7 +36,8 @@ namespace RimThreaded
                         skyManagerStartEvent2.WaitOne();
                         skyManager.SkyManagerUpdate();
                     }
-                }).Start();
+                })
+                    { IsBackground = true }.Start();
             }
             skyManagerStartEvent.Set();
         }

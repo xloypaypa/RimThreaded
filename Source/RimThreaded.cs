@@ -158,7 +158,7 @@ namespace RimThreaded
         static RimThreaded()
         {
             CreateWorkerThreads();
-            monitorThread = new Thread(() => MonitorThreads());
+            monitorThread = new Thread(() => MonitorThreads()) { IsBackground = true };
             monitorThread.Start();
             for(int index = 0; index < totalPrepsCount; index++)
             {
@@ -193,7 +193,7 @@ namespace RimThreaded
         private static ThreadInfo CreateWorkerThread()
         {
             ThreadInfo threadInfo = new ThreadInfo();
-            threadInfo.thread = new Thread(() => InitializeThread(threadInfo));
+            threadInfo.thread = new Thread(() => InitializeThread(threadInfo)) { IsBackground = true };
             threadInfo.thread.Start();
             return threadInfo;
         }
